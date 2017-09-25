@@ -27,6 +27,7 @@
     "babel-eslint": "^8.0.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
+    "coveralls": "^2.13.1",
     "eslint": "^4.7.2",
     "eslint-config-wdfe": "^0.4.1",
     "html-webpack-plugin": "^2.30.1",
