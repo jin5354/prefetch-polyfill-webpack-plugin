@@ -1,0 +1,37 @@
+{
+  "name": "prefetch-polyfill-webpack-plugin",
+  "version": "0.0.1",
+  "description": "prefetch-polyfill-webpack-plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc ava --verbose"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jin5354/prefetch-polyfill-webpack-plugin.git"
+  },
+  "author": "jin5354<xiaoyanjinx@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jin5354/prefetch-polyfill-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/jin5354/prefetch-polyfill-webpack-plugin#readme",
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-eslint": "^8.0.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.7.2",
+    "eslint-config-wdfe": "^0.4.1",
+    "html-webpack-plugin": "^2.30.1",
+    "nyc": "^11.2.1",
+    "regenerator-runtime": "^0.11.0",
+    "webpack": "^3.6.0"
+  }
+}
