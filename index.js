@@ -1,7 +1,7 @@
 'use strict'
 const flatten = arr => arr.reduce((prev, curr) => prev.concat(curr), [])
 const generator = files => {
-  return `<script defer>
+  return `<script>
   (function(){
     window.onload = function () {
       var i = 0, length = 0,

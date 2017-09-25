@@ -5,12 +5,12 @@
 
 ## Intro
 
-This plugin automatically wire up thunks with a defer prefetch function(using new Image().src) for platform which doesn't support `<link rel='prefetch'>`, such as iOS safari.
+This plugin automatically wire up thunks with a prefetch function(using new Image().src) for platform which doesn't support `<link rel='prefetch'>`, such as iOS safari.
 
 You MUST use this plugin with [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin).
 
 ```html
-<script defer>
+<script>
   (function(){
     window.onload = function () {
       var i = 0, length = 0,
