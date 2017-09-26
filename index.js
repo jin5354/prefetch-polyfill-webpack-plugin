@@ -14,7 +14,7 @@ const generator = files => {
   return `<script>
   (function(){
     var ua = (typeof navigator !== 'undefined' ? navigator.userAgent || '' : '')
-    if(/safari|applewebkit|iphone|ipad|ipod|msie|trident/i.test(ua)) {
+    if(/safari|iphone|ipad|ipod|msie|trident/i.test(ua)) {
       window.onload = function () {
         var i = 0, length = 0,
           preloadJs = [${files.join(',')}]
