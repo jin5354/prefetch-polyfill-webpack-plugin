@@ -18,7 +18,7 @@ The prefetch polyfill function will be injected before `</body>`.
 <script>
   (function(){
     var ua = (typeof navigator !== 'undefined' ? navigator.userAgent || '' : '')
-    if(/safari|iphone|ipad|ipod|msie|trident/i.test(ua)) {
+    if(/safari|iphone|ipad|ipod|msie|trident/i.test(ua) && !/chrome|firefox|edge/i.test(ua)) {
       window.onload = function () {
         var i = 0, length = 0,
           preloadJs = ['/chunk.a839f9eac501a92482ca.js', ...your thunks]
