@@ -8,9 +8,9 @@
 
 ## Intro
 
-This plugin automatically wire up your async thunks with a prefetch polyfill function(using new Image().src) for platform which doesn't support `<link rel='prefetch'>`, such as safari.
+This plugin automatically wire up your async thunks with a prefetch polyfill function(using new Image().src) for platform which doesn't support `<link rel='prefetch'>`, such as safari, to improve load time.
 
-You MUST use this plugin with [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin).
+This is an extension plugin for [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin).
 
 The prefetch polyfill function will be injected before `</body>`.
 
@@ -18,7 +18,7 @@ The prefetch polyfill function will be injected before `</body>`.
 <script>
   (function(){
     var ua = (typeof navigator !== 'undefined' ? navigator.userAgent || '' : '')
-    if(/safari|iphone|ipad|ipod|msie|trident/i.test(ua) && !/chrome|firefox|edge/i.test(ua)) {
+    if(/safari|iphone|ipad|ipod|msie|trident/i.test(ua) && !/chrome|crios|crmo|firefox|iceweasel|fxios|edge/i.test(ua)) {
       window.onload = function () {
         var i = 0, length = 0,
           preloadJs = ['/chunk.a839f9eac501a92482ca.js', ...your thunks]
@@ -30,8 +30,9 @@ The prefetch polyfill function will be injected before `</body>`.
     }
   })()
 </script>
-
 ```
+
+![example](https://user-images.githubusercontent.com/6868950/30850447-30b6856a-a26b-11e7-812a-9e85e9e4aebe.jpeg)
 
 ## Install
 
