@@ -65,5 +65,27 @@ test('empty output publicPath', async t => {
   t.regex(html, /preloadJs\s=\s\['chunk/)
 })
 
+test('script async mode', async t => {
+  const result = await webpackp({
+    entry: {
+      js: path.join(__dirname, '../testcase/index.js')
+    },
+    output: {
+      path: OUTPUT_DIR,
+      filename: 'bundle.js',
+      chunkFilename: 'chunk.[chunkhash].js',
+      publicPath: '/',
+    },
+    plugins: [
+      new HtmlWebpackPlugin(),
+      new PrefetchPolyfillPlugin({
+        mode: 'async'
+      })
+    ]
+  })
 
+  t.is(JSON.stringify(result.compilation.errors), '[]')
+  const html = result.compilation.assets['index.html'].source()
+  t.regex(html, /preloadJs\s=\s\['\/chunk/)
+})
 

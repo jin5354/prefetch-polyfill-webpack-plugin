@@ -8,13 +8,14 @@
 
 ## Intro
 
-This plugin automatically wire up your async thunks with a prefetch polyfill function(using new Image().src) for platform which doesn't support `<link rel='prefetch'>`, such as safari, to improve load time.
+This plugin automatically wire up your async thunks with a prefetch polyfill function(using new Image().src or `<script async>`) for platform which doesn't support `<link rel='prefetch'>`, such as safari, to improve load time.
 
 This is an extension plugin for [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin).
 
 The prefetch polyfill function will be injected before `</body>`.
 
 ```html
+<!-- as default it use new Image().src -->
 <script>
   (function(){
     var ua = (typeof navigator !== 'undefined' ? navigator.userAgent || '' : '')
@@ -29,6 +30,26 @@ The prefetch polyfill function will be injected before `</body>`.
       }
     }
   })()
+</script>
+
+<!-- you can choose to use <script async> -->
+<script>
+(function(){
+  var ua = (typeof navigator !== 'undefined' ? navigator.userAgent || '' : '')
+  if(/safari|iphone|ipad|ipod|msie|trident/i.test(ua) && !/chrome|crios|crmo|firefox|iceweasel|fxios|edge/i.test(ua)) {
+    window.onload = function () {
+      var i = 0, length = 0, js,
+        preloadJs = ['/chunk.a839f9eac501a92482ca.js', ...your thunks]
+
+      for (i = 0, length = preloadJs.length; i < length; i++) {
+        js = document.createElement('script')
+        js.src = preloadJs[i]
+        js.async = true
+        document.body.appendChild(js)
+      }
+    }
+  }
+})()
 </script>
 ```
 
@@ -55,10 +76,24 @@ plugins: [
   new HtmlWebpackPlugin(),
   new PrefetchPolyfillPlugin()
 ]
-
 ```
 
 This plugin works well with [preload-webpack-plugin](https://github.com/GoogleChrome/preload-webpack-plugin). If you are using code splitting you are recommended to use both plugin at the same time.
+
+## options
+
+### mode
+
+Set mode to `async` to use `<script async>` to prefetch, or use `new Image().src` as default.
+
+```javascript
+plugins: [
+  new HtmlWebpackPlugin(),
+  new PrefetchPolyfillPlugin({
+    mode: 'async'
+  })
+]
+```
 
 ## Acknowledgment
 
